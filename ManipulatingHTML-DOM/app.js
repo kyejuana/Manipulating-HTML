@@ -1,44 +1,72 @@
+let container = document.createElement("div");
+let msgBtn = document.createElement("button");
+let textAlertInput = document.querySelector("#text-alert-input");
+let textAlertBtn = document.querySelector("#text-alert-btn");
+let hoverColor = document.querySelector("#hover-color");
+let colorPara = document.createElement("paragraph");
+let nameBtn = document.querySelector("#name-btn");
+let nameDiv = document.querySelector("#name-div");
+let friendBtn = document.querySelector(".friend-btn");
+let friends = [
+  "Tristan",
+  "Chris",
+  "Rosemary",
+  "Andrea",
+];
+let counter = 0;
 
-addEventListener("DOMContentLoaded", function() {
-//OBJECTIVE 1
-    let body = document.body;
-    let button = document.createElement("button");
-    let buttonText = document.createTextNode("Click Me!");
-    button.appendChild(buttonText);
-    document.body.appendChild(button);
+colorPara.textContent =
+  "I think I actually got this...well, maybe!";
+container.appendChild(colorPara);
+container.id = "container";
+msgBtn.innerText = "Click to alert a message!";
+msgBtn.id = "msg-btn";
+hoverColor.style.height = "150px";
 
-    addEventListener("click", click);
-    function click() {
-        alert("You got this!!!")
-    }
+document.body.appendChild(container);
+container.appendChild(msgBtn);
 
-//OBJECTIVE 2
-    let button = document.getElementById("button");
-    button.addEventListener("click", function() {
-    let message = document.getElementById("text-box").value;
-    alert(message);
-    })
-//OBJECTIVE 3
-    let div = document.getElementById("div");
-    div.addEventListener("mouseenter", function() {
-    div.style.backgroundColor = "purple";
-    })
-    div.addEventListener("mouseleave", function() {
-    div.style.backgroundColor = "teal";
-    })
-//OBJECTIVE 4
-    let p = document.getElementById("p");
-    let pText = document.createTextNode("I think I might actually have this!!!...I think!");
-    p.appendChild(pText);
-    document.body.appendChild(p);
+msgBtn.addEventListener("click", function () {
+  alert("What's upper");
+});
 
-    p.addEventListener('click', function() {
-        let colors = '#';
-        let letters = [""];
-        colors += letters[Math.floor(Math.random() * letters.length)];
-        p.style.color = colors; 
-    });
+textAlertBtn.addEventListener("click", function () {
+  alert(textAlertInput.value);
+});
 
-//OBJECTIVE 5
-    
+hoverColor.addEventListener("mouseover", function () {
+  hoverColor.style.backgroundColor = "red";
+});
+
+hoverColor.addEventListener("mouseout", function () {
+  hoverColor.style.backgroundColor = "";
+});
+
+colorPara.addEventListener("click", function () {
+  var letters = "0123456789ABCDEF";
+  var color = "#";
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+
+  colorPara.style.color = color;
+});
+
+nameBtn.addEventListener("click", function () {
+  let span = document.createElement("span");
+  span.style.float = "left";
+  span.innerText = "KyeJuana Avery";
+  span.style.width = "100vw";
+  container.appendChild(span);
+  container.appendChild(document.createElement("br"));
+});
+
+friendBtn.addEventListener("click", function () {
+  if (counter < friends.length) {
+    let li = document.createElement("li");
+    li.innerText = friends[counter];
+    document.querySelector("ul").appendChild(li);
+
+    counter++;
+  }
 });
